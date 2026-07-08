@@ -161,7 +161,7 @@ export default function App() {
   const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      if (params.get("preview") === "true" || params.get("access") === "mwh" || params.get("access") === "admin") {
+      if (params.get("preview") === "true" || params.get("access") === "2904" || params.get("access") === "mwh" || params.get("access") === "admin") {
         localStorage.setItem("mwh_preview_unlocked", "true");
         return true;
       }
@@ -311,14 +311,14 @@ export default function App() {
 
   const handleUnlockSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (unlockPassword.toLowerCase() === "admin" || unlockPassword.toLowerCase() === "mwh2026") {
+    if (unlockPassword.trim() === "2904") {
       setIsUnlocked(true);
       localStorage.setItem("mwh_preview_unlocked", "true");
       setShowUnlockModal(false);
       setUnlockError("");
       setUnlockPassword("");
     } else {
-      setUnlockError("Forkert adgangskode. Prøv f.eks. 'admin' eller 'mwh2026'.");
+      setUnlockError("Forkert adgangskode.");
     }
   };
 
@@ -526,7 +526,7 @@ export default function App() {
                       required
                       value={unlockPassword}
                       onChange={(e) => setUnlockPassword(e.target.value)}
-                      placeholder="Indtast f.eks. admin eller mwh2026"
+                      placeholder="Indtast adgangskode"
                       className="w-full bg-zinc-900 border border-zinc-800 rounded px-3 py-2.5 text-sm text-white placeholder-zinc-650 focus:outline-none focus:border-emerald-500/50 transition-colors"
                     />
                   </div>
